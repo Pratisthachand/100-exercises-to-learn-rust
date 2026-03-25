@@ -6,8 +6,8 @@ mod tests {
 
     #[test]
     fn u16_to_u32() {
-        let v: u32 = todo!();
-        assert_eq!(47u16 as u32, v);
+        let v: u32 = 47;
+        assert_eq!(47u16 as u32, v); //Widening conversions are lossless - no data loss occurs
     }
 
     #[test]
@@ -24,14 +24,31 @@ mod tests {
         // You could solve this by using exactly the same expression as above,
         // but that would defeat the purpose of the exercise. Instead, use a genuine
         // `i8` value that is equivalent to `255` when converted to `u8`.
-        let y: i8 = todo!();
+
+
+        // MY NOTES:
+        // Binary Representation:
+        // 255 in u8:  11111111 (unsigned)
+        // Same bits in i8: 11111111 (signed)
+
+        // Signed Interpretation (Two's Complement):
+        // - Leftmost 1 indicates negative number
+        // - Remaining bits represent magnitude
+        // - 11111111 in i8 represents -1
+
+        // Calculation Process:
+        // 1. Leftmost 1 means negative
+        // 2. Invert bits:   11111111 → 00000000
+        // 3. Add 1:         00000000 + 1 = 00000001
+        // 4. Result is -1
+        let y: i8 = -1;
 
         assert_eq!(x, y);
     }
 
     #[test]
     fn bool_to_u8() {
-        let v: u8 = todo!();
-        assert_eq!(true as u8, v);
+        let v: u8 = 1;
+        assert_eq!(true as u8, v); // In boolean to integer conversion: false maps to 0, true maps to 1
     }
 }
